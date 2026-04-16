@@ -7,171 +7,182 @@
 
 <style>
 body {font-family: Arial; margin:0; background:#f4f4f4;}
-header {background:#111; color:#fff; padding:15px; text-align:center; font-size:20px;}
-.hero {background:#000; color:#fff; padding:30px; text-align:center; font-size:18px;}
-.container {padding:20px;}
+header {background:#111; color:#fff; padding:15px; text-align:center;}
+.hero {background:#000; color:#fff; padding:20px; text-align:center;}
+.container {padding:15px;}
 .card {background:#fff; padding:15px; margin:15px 0; border-radius:10px;}
 input, select, textarea, button {width:100%; padding:10px; margin-top:10px;}
 button {background:green; color:#fff; border:none;}
-footer {background:#111; color:#fff; text-align:center; padding:10px;}
-.center {text-align:center;}
+.tab-btn {display:flex; gap:5px; padding:10px; background:#ddd;}
+.tab-btn button {flex:1; padding:10px; background:#333; color:#fff;}
+.tab-content {display:none;}
+.active {display:block;}
+img {border-radius:10px;}
 </style>
 
 </head>
 
 <body>
 
-<header>
-🚖 Raj Ride Taxi Service
-</header>
+<header>🚖 Raj Ride Taxi Service</header>
 
 <div class="hero">
-✨ Padharo Mhare Desh – Safe • Trusted • No Commission Taxi Service ✨
-<br><br>
-👉 Aapka safar hum banayenge asaan aur transparent  
-👉 Koi hidden charge nahi – Sirf sachha kiraya
+✨ Safe • Trusted • No Commission Taxi ✨
+</div>
+
+<!-- TAB BUTTONS -->
+<div class="tab-btn">
+<button onclick="showTab('ride')">Taxi</button>
+<button onclick="showTab('wedding')">Wedding</button>
+<button onclick="showTab('tour')">Tour</button>
+<button onclick="showTab('planner')">Planner</button>
 </div>
 
 <div class="container">
 
-<!-- BOOKING -->
-<div class="card">
-<h3>🚖 Book Your Ride</h3>
+<!-- 🚖 TAXI -->
+<div id="ride" class="tab-content active card">
 
-<input type="text" id="name" placeholder="Customer Name">
-<input type="text" id="mobile" placeholder="Mobile Number">
-<input type="text" id="pickup" placeholder="Pickup Location">
-<input type="text" id="drop" placeholder="Drop Location">
+<h3>🚖 Taxi Booking</h3>
+
+<input id="name" placeholder="Name *">
+<input id="mobile" placeholder="Mobile *">
+<input id="pickup" placeholder="Pickup *">
+<input id="drop" placeholder="Drop *">
 
 <input type="date" id="date">
 <input type="time" id="time">
 
 <select id="trip">
-<option>Trip Type</option>
 <option>One Way</option>
 <option>Round Trip</option>
 </select>
 
 <select id="car">
-<option>Select Vehicle</option>
 <option>Mini</option>
 <option>Sedan</option>
 <option>SUV</option>
 <option>Innova</option>
-<option>Tempo Traveller (12-13 Seater)</option>
-<option>Tempo Traveller (17 Seater)</option>
-<option>Luxury Car</option>
-<option>Bus</option>
+<option>Tempo Traveller</option>
 </select>
-
-<input type="number" id="passenger" placeholder="Passengers">
-<input type="text" id="luggage" placeholder="Luggage Details">
-
-<textarea id="note" placeholder="Special Note"></textarea>
 
 <button onclick="bookRide()">Book on WhatsApp</button>
 
-<p><b>✔️ Advance payment se aapki booking confirm hoti hai – No waiting</b></p>
-</div>
-
-<!-- FARE -->
+<!-- QR -->
 <div class="card">
-<h3>💰 Fare Estimate</h3>
-<input type="number" id="km" placeholder="Distance (KM)">
-<button onclick="calcFare()">Calculate</button>
-<p id="fare"></p>
-
-<p><b>Note:</b> Minimum KM rule applicable | Final fare confirm hoga</p>
-</div>
-
-<!-- QR PAYMENT -->
-<div class="card center">
-<h3>💰 Advance Payment</h3>
-
-<img src="qr.png" width="220">
-
-<p><b>Raj Ride Taxi Service 🚖</b></p>
-<p>UPI ID: myrajride@naviaxis</p>
-
-<p><b>Scan karein aur advance payment karein</b></p>
-
-<a href="https://wa.me/917413931002?text=Payment Done" target="_blank">
-<button>Send Payment Screenshot</button>
+<h4>Pay Advance</h4>
+<img src="qr.png" width="200">
+<p>UPI: myrajride@naviaxis</p>
+<a href="https://wa.me/917413931002?text=Payment Done">
+<button>Send Screenshot</button>
 </a>
-
-<p><b>✔️ Advance dene ke baad turant gadi allot hoti hai</b></p>
 </div>
 
-<!-- WEDDING -->
-<div class="card">
-<h3>💍 Destination Wedding Transport</h3>
-
-<input type="text" id="wname" placeholder="Name">
-<input type="text" id="wmobile" placeholder="Mobile">
-<input type="text" id="wlocation" placeholder="Wedding Location">
-
-<input type="date" id="wdate">
-<input type="time" id="wtime">
-
-<input type="text" id="wpickup" placeholder="Pickup Location">
-<input type="text" id="wtrain" placeholder="Train/Flight Number">
-
-<input type="number" id="wguest" placeholder="Guests">
-
-<textarea id="wnote" placeholder="Special Requirement"></textarea>
-
-<button onclick="sendWedding()">Send Wedding Enquiry</button>
-
-<p>Note: Parking & waiting charges extra ho sakte hain</p>
 </div>
 
-<!-- REVIEWS -->
+<!-- 💍 WEDDING -->
+<div id="wedding" class="tab-content card">
+
+<h3>💍 Destination Wedding</h3>
+
+<input placeholder="Name">
+<input placeholder="Mobile">
+<input placeholder="Location">
+<input type="date">
+<input placeholder="Train/Flight">
+
+<button onclick="wa('Wedding enquiry')">Send Enquiry</button>
+
 <div class="card">
-<h3>⭐ Customer Reviews</h3>
-<p><b>Ravi Sharma</b> ⭐⭐⭐⭐⭐<br>On time service, best experience</p>
-<p><b>Pooja Verma</b> ⭐⭐⭐⭐⭐<br>Safe and comfortable ride</p>
+<img src="qr.png" width="200">
+<p>Scan & Pay Advance</p>
 </div>
 
-<!-- RULES -->
+</div>
+
+<!-- 🏙️ TOUR -->
+<div id="tour" class="tab-content card">
+
+<h3>🏙️ City Tour</h3>
+<p>Jaipur, Jodhpur, Udaipur tours available</p>
+
 <div class="card">
-<h3>📜 Rules & Guidelines</h3>
+<img src="qr.png" width="200">
+<p>Advance Payment</p>
+</div>
 
-<p>✔️ Verified Sarathi (Driver)</p>
-<p>✔️ No Commission Policy – Aapka paisa bachana hamara kaam</p>
-<p>✔️ Minimum KM rule applicable</p>
-<p>✔️ Round trip start point se count hoga</p>
-<p>✔️ Parking & waiting charges extra</p>
-<p>✔️ Kisi bhi galat charge par complaint karein – refund milega</p>
+</div>
 
+<!-- 🧭 PLANNER -->
+<div id="planner" class="tab-content card">
+
+<h3>🧭 Trip Planner</h3>
+
+<button onclick="showPlan('3')">3 Days</button>
+<button onclick="showPlan('5')">5 Days</button>
+<button onclick="showPlan('7')">7 Days</button>
+
+<p id="plan"></p>
+
+<h4>Explore Rajasthan</h4>
+
+<img src="https://source.unsplash.com/300x200/?rajasthan,temple">
+<p>Temple Visit</p>
+
+<img src="https://source.unsplash.com/300x200/?rajasthan,fort">
+<p>Fort Visit</p>
+
+<img src="https://source.unsplash.com/300x200/?rajasthan,desert">
+<p>Desert Safari</p>
+
+<div class="card">
+<img src="qr.png" width="200">
+<p>Pay Advance</p>
+</div>
+
+</div>
+
+<!-- 📞 COMPLAINT -->
+<div class="card">
+<h3>📞 Complaint / Support</h3>
+<textarea placeholder="Write your issue"></textarea>
+<button onclick="wa('Customer Complaint')">Submit</button>
+<p>✔️ Complaint par turant action & refund support</p>
 </div>
 
 </div>
 
 <footer>
-📞 Call / WhatsApp: 7413931002  
-<br>Raj Ride – Safe Travel, Smart Pricing
+📞 7413931002 | Raj Ride 🚖
 </footer>
 
 <script>
+
+function showTab(tab){
+document.querySelectorAll(".tab-content").forEach(x=>x.style.display="none");
+document.getElementById(tab).style.display="block";
+}
+
 function bookRide(){
-let name = document.getElementById("name").value;
-let p = document.getElementById("pickup").value;
-let d = document.getElementById("drop").value;
+let name=document.getElementById("name").value;
+let pickup=document.getElementById("pickup").value;
+let drop=document.getElementById("drop").value;
 
-let msg = "🚖 Booking Request%0AName: "+name+"%0APickup: "+p+"%0ADrop: "+d;
-
+let msg="Booking:%0AName:"+name+"%0APickup:"+pickup+"%0ADrop:"+drop;
 window.open("https://wa.me/917413931002?text="+msg);
 }
 
-function calcFare(){
-let km = document.getElementById("km").value;
-let fare = km * 12;
-document.getElementById("fare").innerHTML = "Estimated Fare: ₹"+fare;
+function wa(text){
+window.open("https://wa.me/917413931002?text="+text);
 }
 
-function sendWedding(){
-window.open("https://wa.me/917413931002?text=Wedding Enquiry");
+function showPlan(days){
+let p=document.getElementById("plan");
+if(days==3) p.innerHTML="Jaipur + Ajmer + Pushkar";
+if(days==5) p.innerHTML="Jaipur → Jodhpur → Jaisalmer";
+if(days==7) p.innerHTML="Jaipur → Udaipur → Jaisalmer → Jodhpur";
 }
+
 </script>
 
 </body>
