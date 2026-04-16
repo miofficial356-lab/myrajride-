@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Taxi Booking Service</title>
+  <title>Raj Ride Taxi Service</title>
+
   <style>
     body {
       font-family: Arial;
@@ -51,6 +52,7 @@
       color: white;
       border: none;
       cursor: pointer;
+      font-size: 16px;
     }
 
     button:hover {
@@ -70,7 +72,7 @@
 <body>
 
 <header>
-  Taxi Booking App
+  🚖 Raj Ride Taxi Service
 </header>
 
 <div class="hero">
@@ -81,8 +83,11 @@
 
   <div class="card">
     <h3>Book Taxi</h3>
+
     <input type="text" id="pickup" placeholder="Pickup Location">
     <input type="text" id="drop" placeholder="Drop Location">
+    <input type="text" id="mobile" placeholder="Mobile Number">
+
     <button onclick="bookRide()">Book Now</button>
   </div>
 
@@ -93,21 +98,27 @@
 </div>
 
 <footer>
-  © 2026 Taxi Service
+  © 2026 Raj Ride Taxi Service
 </footer>
 
 <script>
   function bookRide() {
     let p = document.getElementById("pickup").value;
     let d = document.getElementById("drop").value;
+    let m = document.getElementById("mobile").value;
 
-    if(p === "" || d === "") {
-      alert("Pickup aur Drop location daalo");
+    if(p === "" || d === "" || m === "") {
+      alert("Pickup, Drop aur Mobile number daalo");
       return;
     }
 
+    let message = "Pickup: " + p + "%0ADrop: " + d + "%0AMobile: " + m;
+    let url = "https://wa.me/917413931002?text=" + message;
+
+    window.open(url, "_blank");
+
     document.getElementById("status").innerHTML =
-      "🚖 Ride booked from <b>" + p + "</b> to <b>" + d + "</b>";
+      "🚖 Ride request sent from <b>" + p + "</b> to <b>" + d + "</b>";
   }
 </script>
 
