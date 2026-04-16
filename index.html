@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taxi Booking Service</title>
+  <style>
+    body {
+      font-family: Arial;
+      margin: 0;
+      background: #f4f4f4;
+    }
+
+    header {
+      background: #111;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .hero {
+      background: url('https://images.unsplash.com/photo-1523987355523-c7b5b07a49b8') center/cover;
+      height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 10px;
+    }
+
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+    }
+
+    button {
+      background: green;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: darkgreen;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background: #111;
+      color: white;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  Taxi Booking App
+</header>
+
+<div class="hero">
+  Book Your Ride Instantly
+</div>
+
+<div class="container">
+
+  <div class="card">
+    <h3>Book Taxi</h3>
+    <input type="text" id="pickup" placeholder="Pickup Location">
+    <input type="text" id="drop" placeholder="Drop Location">
+    <button onclick="bookRide()">Book Now</button>
+  </div>
+
+  <div class="card" id="status">
+    Status: Waiting for booking...
+  </div>
+
+</div>
+
+<footer>
+  © 2026 Taxi Service
+</footer>
+
+<script>
+  function bookRide() {
+    let p = document.getElementById("pickup").value;
+    let d = document.getElementById("drop").value;
+
+    if(p === "" || d === "") {
+      alert("Pickup aur Drop location daalo");
+      return;
+    }
+
+    document.getElementById("status").innerHTML =
+      "🚖 Ride booked from <b>" + p + "</b> to <b>" + d + "</b>";
+  }
+</script>
+
+</body>
+</html>
