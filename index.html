@@ -1,125 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Raj Ride Taxi Service</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raj Ride Taxi Service</title>
 
-  <style>
-    body {
-      font-family: Arial;
-      margin: 0;
-      background: #f4f4f4;
-    }
+<style>
+body {font-family: Arial; margin:0; background:#f4f4f4;}
+header {background:#111; color:#fff; padding:15px; text-align:center; font-size:20px;}
+.hero {background:#000; color:#fff; padding:30px; text-align:center; font-size:18px;}
+.container {padding:20px;}
+.card {background:#fff; padding:15px; margin:15px 0; border-radius:10px;}
+input, select, textarea, button {width:100%; padding:10px; margin-top:10px;}
+button {background:green; color:#fff; border:none;}
+footer {background:#111; color:#fff; text-align:center; padding:10px;}
+.center {text-align:center;}
+</style>
 
-    header {
-      background: #111;
-      color: white;
-      padding: 15px;
-      text-align: center;
-    }
-
-    .hero {
-      background: url('https://images.unsplash.com/photo-1523987355523-c7b5b07a49b8') center/cover;
-      height: 250px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 28px;
-      font-weight: bold;
-    }
-
-    .container {
-      padding: 20px;
-    }
-
-    .card {
-      background: white;
-      padding: 15px;
-      margin: 10px 0;
-      border-radius: 10px;
-    }
-
-    input, button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-    }
-
-    button {
-      background: green;
-      color: white;
-      border: none;
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    button:hover {
-      background: darkgreen;
-    }
-
-    footer {
-      text-align: center;
-      padding: 10px;
-      background: #111;
-      color: white;
-      margin-top: 20px;
-    }
-  </style>
 </head>
 
 <body>
 
 <header>
-  🚖 Raj Ride Taxi Service
+🚖 Raj Ride Taxi Service
 </header>
 
 <div class="hero">
-  Book Your Ride Instantly
+✨ Padharo Mhare Desh – Safe • Trusted • No Commission Taxi Service ✨
+<br><br>
+👉 Aapka safar hum banayenge asaan aur transparent  
+👉 Koi hidden charge nahi – Sirf sachha kiraya
 </div>
 
 <div class="container">
 
-  <div class="card">
-    <h3>Book Taxi</h3>
+<!-- BOOKING -->
+<div class="card">
+<h3>🚖 Book Your Ride</h3>
 
-    <input type="text" id="pickup" placeholder="Pickup Location">
-    <input type="text" id="drop" placeholder="Drop Location">
-    <input type="text" id="mobile" placeholder="Mobile Number">
+<input type="text" id="name" placeholder="Customer Name">
+<input type="text" id="mobile" placeholder="Mobile Number">
+<input type="text" id="pickup" placeholder="Pickup Location">
+<input type="text" id="drop" placeholder="Drop Location">
 
-    <button onclick="bookRide()">Book Now</button>
-  </div>
+<input type="date" id="date">
+<input type="time" id="time">
 
-  <div class="card" id="status">
-    Status: Waiting for booking...
-  </div>
+<select id="trip">
+<option>Trip Type</option>
+<option>One Way</option>
+<option>Round Trip</option>
+</select>
+
+<select id="car">
+<option>Select Vehicle</option>
+<option>Mini</option>
+<option>Sedan</option>
+<option>SUV</option>
+<option>Innova</option>
+<option>Tempo Traveller (12-13 Seater)</option>
+<option>Tempo Traveller (17 Seater)</option>
+<option>Luxury Car</option>
+<option>Bus</option>
+</select>
+
+<input type="number" id="passenger" placeholder="Passengers">
+<input type="text" id="luggage" placeholder="Luggage Details">
+
+<textarea id="note" placeholder="Special Note"></textarea>
+
+<button onclick="bookRide()">Book on WhatsApp</button>
+
+<p><b>✔️ Advance payment se aapki booking confirm hoti hai – No waiting</b></p>
+</div>
+
+<!-- FARE -->
+<div class="card">
+<h3>💰 Fare Estimate</h3>
+<input type="number" id="km" placeholder="Distance (KM)">
+<button onclick="calcFare()">Calculate</button>
+<p id="fare"></p>
+
+<p><b>Note:</b> Minimum KM rule applicable | Final fare confirm hoga</p>
+</div>
+
+<!-- QR PAYMENT -->
+<div class="card center">
+<h3>💰 Advance Payment</h3>
+
+<img src="qr.png" width="220">
+
+<p><b>Raj Ride Taxi Service 🚖</b></p>
+<p>UPI ID: myrajride@naviaxis</p>
+
+<p><b>Scan karein aur advance payment karein</b></p>
+
+<a href="https://wa.me/917413931002?text=Payment Done" target="_blank">
+<button>Send Payment Screenshot</button>
+</a>
+
+<p><b>✔️ Advance dene ke baad turant gadi allot hoti hai</b></p>
+</div>
+
+<!-- WEDDING -->
+<div class="card">
+<h3>💍 Destination Wedding Transport</h3>
+
+<input type="text" id="wname" placeholder="Name">
+<input type="text" id="wmobile" placeholder="Mobile">
+<input type="text" id="wlocation" placeholder="Wedding Location">
+
+<input type="date" id="wdate">
+<input type="time" id="wtime">
+
+<input type="text" id="wpickup" placeholder="Pickup Location">
+<input type="text" id="wtrain" placeholder="Train/Flight Number">
+
+<input type="number" id="wguest" placeholder="Guests">
+
+<textarea id="wnote" placeholder="Special Requirement"></textarea>
+
+<button onclick="sendWedding()">Send Wedding Enquiry</button>
+
+<p>Note: Parking & waiting charges extra ho sakte hain</p>
+</div>
+
+<!-- REVIEWS -->
+<div class="card">
+<h3>⭐ Customer Reviews</h3>
+<p><b>Ravi Sharma</b> ⭐⭐⭐⭐⭐<br>On time service, best experience</p>
+<p><b>Pooja Verma</b> ⭐⭐⭐⭐⭐<br>Safe and comfortable ride</p>
+</div>
+
+<!-- RULES -->
+<div class="card">
+<h3>📜 Rules & Guidelines</h3>
+
+<p>✔️ Verified Sarathi (Driver)</p>
+<p>✔️ No Commission Policy – Aapka paisa bachana hamara kaam</p>
+<p>✔️ Minimum KM rule applicable</p>
+<p>✔️ Round trip start point se count hoga</p>
+<p>✔️ Parking & waiting charges extra</p>
+<p>✔️ Kisi bhi galat charge par complaint karein – refund milega</p>
+
+</div>
 
 </div>
 
 <footer>
-  © 2026 Raj Ride Taxi Service
+📞 Call / WhatsApp: 7413931002  
+<br>Raj Ride – Safe Travel, Smart Pricing
 </footer>
 
 <script>
-  function bookRide() {
-    let p = document.getElementById("pickup").value;
-    let d = document.getElementById("drop").value;
-    let m = document.getElementById("mobile").value;
+function bookRide(){
+let name = document.getElementById("name").value;
+let p = document.getElementById("pickup").value;
+let d = document.getElementById("drop").value;
 
-    if(p === "" || d === "" || m === "") {
-      alert("Pickup, Drop aur Mobile number daalo");
-      return;
-    }
+let msg = "🚖 Booking Request%0AName: "+name+"%0APickup: "+p+"%0ADrop: "+d;
 
-    let message = "Pickup: " + p + "%0ADrop: " + d + "%0AMobile: " + m;
-    let url = "https://wa.me/917413931002?text=" + message;
+window.open("https://wa.me/917413931002?text="+msg);
+}
 
-    window.open(url, "_blank");
+function calcFare(){
+let km = document.getElementById("km").value;
+let fare = km * 12;
+document.getElementById("fare").innerHTML = "Estimated Fare: ₹"+fare;
+}
 
-    document.getElementById("status").innerHTML =
-      "🚖 Ride request sent from <b>" + p + "</b> to <b>" + d + "</b>";
-  }
+function sendWedding(){
+window.open("https://wa.me/917413931002?text=Wedding Enquiry");
+}
 </script>
 
 </body>
