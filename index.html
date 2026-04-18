@@ -1,113 +1,164 @@
 <!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Taxi Service Rajasthan | Jaipur Cab | Khatu Shyam Taxi | My Raj Ride</title><meta name="description" content="Taxi service in Jaipur, Khatu Shyam Ji, Salasar, Udaipur, Ajmer. Airport pickup, railway, wedding & tour taxi available."><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet"><style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>My Raj Ride | Luxury Taxi Rajasthan</title><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet"><style>
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:Poppins;background:#0f0f0f;color:#fff;}
+
 header{background:#000;padding:15px;text-align:center;color:gold;font-weight:bold;}
 
-.hero{padding:40px 20px;text-align:center;}
-.hero h1{color:gold;font-size:26px;}
-.hero p{color:#ccc;margin-top:10px;}
+.hero{
+height:90vh;
+background:url('https://images.unsplash.com/photo-1605540436563-5bca919ae766') center/cover;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+}
 
-.btn{display:block;width:100%;padding:15px;margin-top:10px;border-radius:8px;text-align:center;text-decoration:none;font-weight:bold;}
+.hero h1{font-size:30px;text-shadow:0 0 10px black;}
+.hero p{margin-top:10px;color:#eee;}
+
+.btn{
+display:block;width:90%;max-width:300px;padding:15px;margin-top:10px;
+border-radius:8px;text-decoration:none;font-weight:bold;
+}
+
 .whatsapp{background:#25D366;color:#000;}
 .call{background:gold;color:#000;}
 
 .section{padding:20px;}
-.card{background:#1a1a1a;padding:15px;margin-bottom:15px;border-radius:10px;border:1px solid #333;}
-h2{color:gold;margin-bottom:10px;}
+
+.city{
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(10px);
+margin-bottom:15px;
+border-radius:10px;
+overflow:hidden;
+cursor:pointer;
+border:1px solid #333;
+}
+
+.city-header{
+padding:15px;
+font-weight:bold;
+font-size:18px;
+background:#222;
+}
+
+.city-content{
+max-height:0;
+overflow:hidden;
+transition:0.5s;
+padding:0 15px;
+}
+
+.city.active .city-content{
+max-height:800px;
+padding:15px;
+}
 
 ul li{margin:5px 0;color:#ccc;}
 
+.gallery{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+padding:20px;
+}
+
+.gallery img{
+width:100%;
+border-radius:10px;
+}
+
+.review{
+background:#1a1a1a;
+padding:15px;
+margin:10px;
+border-radius:10px;
+border:1px solid #333;
+}
+
 .footer{text-align:center;padding:20px;background:#000;color:#aaa;}
 
-.sticky{position:fixed;bottom:0;width:100%;display:flex;}
-.sticky a{flex:1;padding:15px;text-align:center;font-weight:bold;text-decoration:none;}
+.sticky{
+position:fixed;bottom:0;width:100%;display:flex;
+}
+
+.sticky a{
+flex:1;padding:15px;text-align:center;font-weight:bold;text-decoration:none;
+}
+
 .sticky .whatsapp{background:#25D366;color:#000;}
 .sticky .call{background:gold;color:#000;}
-</style></head><body><header>🚖 MY RAJ RIDE | Call: 7413931002</header><div class="hero">
-<h1>Taxi Service in Rajasthan</h1>
-<p>Jaipur, Khatu Shyam Ji, Airport, Railway, Wedding & Tour Taxi Available</p><a href="https://wa.me/917413931002?text=Taxi%20booking%20required" class="btn whatsapp">📲 WhatsApp Booking</a>
+</style></head><body><header>🚖 MY RAJ RIDE | 7413931002</header><div class="hero">
+<h1>Luxury Taxi Service Rajasthan</h1>
+<p>Jaipur • Khatu Shyam • Udaipur • Tour • Wedding Taxi</p><a href="https://wa.me/917413931002" class="btn whatsapp">📲 WhatsApp Booking</a>
 <a href="tel:7413931002" class="btn call">📞 Call Now</a>
 
-</div><div class="section"><div class="card">
-<h2>🚖 Our Services</h2>
+</div><div class="section"><div class="city" onclick="toggle(this)">
+<div class="city-header">🏰 Jaipur City Tour</div>
+<div class="city-content">
 <ul>
-<li>Jaipur Local Taxi</li>
-<li>Outstation Cab</li>
-<li>Airport Pickup & Drop ✈️</li>
-<li>Railway Pickup 🚆</li>
-<li>Tempo Traveller</li>
+<li>Hawa Mahal</li>
+<li>Jal Mahal</li>
+<li>City Palace</li>
+<li>Amer Fort</li>
+<li>Nahargarh Fort</li>
+<li>Jantar Mantar</li>
+<li>Birla Mandir</li>
+<li>Moti Dungri</li>
+<li>Chokhi Dhani</li>
 </ul>
-</div><div class="card">
-<h2>🛕 Khatu Shyam Ji Route</h2>
+</div>
+</div><div class="city" onclick="toggle(this)">
+<div class="city-header">🛕 Khatu Shyam Ji Route</div>
+<div class="city-content">
 <ul>
 <li>Khatu Shyam Ji</li>
-<li>Lakshmi Mata Temple</li>
-<li>Jeen Mata Temple</li>
-<li>Salasar Balaji Dham</li>
-<li>Anjani Mata</li>
-<li>Rani Sati Mandir (Jhunjhunu)</li>
-<li>Lohagarh Ji Mandir (Udaipurwati)</li>
-<li>Shankhbhari Mata</li>
+<li>Jeen Mata</li>
+<li>Salasar Balaji</li>
+<li>Rani Sati Mandir</li>
 </ul>
-</div><div class="card">
-<h2>🏰 Jaipur City Sightseeing</h2>
+</div>
+</div><div class="city" onclick="toggle(this)">
+<div class="city-header">🏞 Udaipur Tour</div>
+<div class="city-content">
 <ul>
-<li>Jal Mahal</li>
-<li>Hawa Mahal</li>
+<li>Lake Pichola</li>
 <li>City Palace</li>
-<li>Jantar Mantar</li>
-<li>Govind Dev Ji Temple</li>
-<li>Birla Mandir</li>
-<li>Moti Dungri Temple</li>
-<li>Chokhi Dhani</li>
-<li>ISKCON Temple</li>
+<li>Fateh Sagar</li>
+<li>Sajjangarh</li>
+<li>Nathdwara</li>
 </ul>
-</div><div class="card">
-<h2>🛕 Ajmer – Pushkar</h2>
-<ul>
-<li>Kishangarh Marble Yard</li>
-<li>Pushkar Brahma Temple</li>
-<li>Ajmer Dargah</li>
-</ul>
-</div><div class="card">
-<h2>🏰 Chittorgarh</h2>
-<ul>
-<li>Chittorgarh Fort</li>
-<li>Sanwariya Seth Temple</li>
-</ul>
-</div><div class="card">
-<h2>🏞 Udaipur & Nathdwara</h2>
-<ul>
-<li>Udaipur City Tour</li>
-<li>Nathdwara Temple</li>
-</ul>
-</div><div class="card">
-<h2>🐯 Ranthambore / Sawai Madhopur</h2>
-<ul>
-<li>Ganesh Ji Temple</li>
-<li>Jungle Safari</li>
-<li>City Tour</li>
-</ul>
-</div><div class="card">
-<h2>💍 Wedding & Pre-Wedding Taxi</h2>
-<ul>
-<li>Destination Wedding Transport</li>
-<li>Pre-Wedding Shoot Taxi</li>
-<li>Bride & Groom Luxury Car</li>
-<li>Guest Pickup Service</li>
-</ul>
-</div><div class="card">
-<h2>📞 Contact</h2>
-<p>📱 <a href="tel:7413931002" style="color:gold;">7413931002</a></p>
-<p>📧 <a href="mailto:myrajride.travel@gmail.com" style="color:gold;">myrajride.travel@gmail.com</a></p>
+</div>
+</div></div><!-- GALLERY --><div class="section">
+<h2 style="color:gold;">📸 Gallery</h2>
+<div class="gallery">
+<img src="https://images.unsplash.com/photo-1580657018950-c7f7d6a6d990">
+<img src="https://images.unsplash.com/photo-1548013146-72479768bada">
+<img src="https://images.unsplash.com/photo-1599661046827-dacde6976541">
+<img src="https://images.unsplash.com/photo-1564507592333-c60657eea523">
+</div>
+</div><!-- REVIEWS --><div class="section">
+<h2 style="color:gold;">⭐ Customer Reviews</h2><div class="review">“Jaipur to Khatu Shyam trip very smooth. Driver very polite.”</div>
+<div class="review">“Udaipur tour amazing experience. Car clean and luxury.”</div>
+<div class="review">“Best taxi service in Rajasthan. On time pickup.”</div></div><!-- CONTACT --><div class="section">
+<h2 style="color:gold;">📞 Contact</h2>
+<p>📱 7413931002</p>
+<p>📧 myrajride.travel@gmail.com</p>
 <p>📍 Jaipur & Khatu Shyam Ji</p>
-</div></div><div class="footer">
-© My Raj Ride Taxi Service | Rajasthan
+</div><div class="footer">
+© My Raj Ride Taxi Service Rajasthan
 </div><div class="sticky">
 <a href="https://wa.me/917413931002" class="whatsapp">WhatsApp</a>
 <a href="tel:7413931002" class="call">Call</a>
-</div></body>
+</div><script>
+function toggle(e){
+e.classList.toggle("active");
+}
+</script></body>
 </html>
