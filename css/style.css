@@ -16,6 +16,27 @@ body {
   background: rgba(0,0,0,0.6);
 }
 
+/* MENU */
+.menu-icon {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+#menu {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  right: 10px;
+  background: black;
+}
+
+#menu a {
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+}
+
 /* HERO */
 .hero {
   height: 100vh;
@@ -24,6 +45,7 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
+  position: relative;
 }
 
 .overlay {
@@ -33,18 +55,16 @@ body {
   background: rgba(0,0,0,0.6);
 }
 
-/* BUTTON */
+.hero-content {
+  position: relative;
+}
+
 .btn {
   background: gold;
   padding: 12px 25px;
   color: black;
   text-decoration: none;
   border-radius: 8px;
-}
-
-/* NEON GLOW */
-.glow {
-  box-shadow: 0 0 10px gold, 0 0 20px orange;
 }
 
 /* TOURS */
@@ -64,6 +84,8 @@ body {
   background: rgba(255,255,255,0.1);
   padding: 15px;
   border-radius: 10px;
+  text-decoration: none;
+  color: white;
 }
 
 /* SERVICES */
@@ -95,6 +117,8 @@ body {
   text-align: center;
   padding: 20px;
 }
+
+/* ANIMATION */
 .fade-in {
   opacity: 0;
   transform: translateY(40px);
