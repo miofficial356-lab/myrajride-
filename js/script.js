@@ -2,6 +2,7 @@ function toggleMenu() {
   let menu = document.getElementById("menu");
   menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
 }
+
 window.addEventListener("scroll", function() {
   let elements = document.querySelectorAll(".fade-in");
 
