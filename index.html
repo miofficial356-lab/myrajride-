@@ -1,44 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MyRajRide</title>
 
 <style>
 body{margin:0;font-family:Poppins;background:#f4f6fb}
-.header{background:linear-gradient(135deg,#0d1b7e,#1a3cff);color:white;padding:18px;font-size:20px}
-.card{background:white;margin:12px;padding:15px;border-radius:15px;box-shadow:0 4px 12px rgba(0,0,0,0.1)}
-select{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #ddd}
-.btn{width:100%;padding:14px;border:none;background:#0d1b7e;color:white;border-radius:10px}
-.routes{display:flex;overflow:auto;gap:10px}
-.route{min-width:130px;padding:10px;background:white;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.1);cursor:pointer}
-.details{display:none;padding:10px}
-.place{background:white;margin:6px 0;padding:10px;border-radius:10px}
 
-/* REVIEWS */
-.review-box{overflow:hidden}
-.reviews{display:flex;animation:scroll 25s linear infinite}
-.review{min-width:250px;margin:10px;padding:10px;background:white;border-radius:10px}
+/* HERO */
+.hero{
+background:linear-gradient(135deg,#0d1b7e,#1a3cff);
+color:white;padding:60px 20px;text-align:center;
+animation:fade 1s;
+}
+.hero h1{margin:0;font-size:28px}
+
+/* CARD */
+.card{
+background:white;margin:15px;padding:15px;
+border-radius:15px;
+box-shadow:0 4px 12px rgba(0,0,0,0.1);
+animation:up 0.8s;
+}
+
+/* INPUT */
+input,select{
+width:100%;padding:12px;margin:6px 0;
+border-radius:8px;border:1px solid #ddd;
+}
+
+/* BUTTON */
+.btn{
+width:100%;padding:14px;
+background:#0d1b7e;color:white;
+border:none;border-radius:10px;
+}
+
+/* GRID */
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+}
+.route{
+background:white;padding:12px;text-align:center;
+border-radius:10px;
+box-shadow:0 2px 8px rgba(0,0,0,0.1);
+cursor:pointer;
+}
+
+/* PLACE */
+.place{
+background:#f9f9f9;margin:5px 0;
+padding:8px;border-radius:8px;
+}
 
 /* STICKY */
-.sticky{position:fixed;bottom:0;width:100%;background:white;padding:10px;box-shadow:0 -2px 10px rgba(0,0,0,0.2);display:flex;gap:10px}
-.call{background:#ff3b3b;color:white}
+.sticky{
+position:fixed;bottom:0;width:100%;
+display:flex;gap:10px;padding:10px;
+background:white;
+box-shadow:0 -2px 10px rgba(0,0,0,0.2);
+}
+.call{background:red;color:white}
 .wa{background:#25D366;color:white}
 
-@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
+/* ANIMATION */
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes up{from{transform:translateY(20px);opacity:0}to{opacity:1}}
+
 </style>
 </head>
 
 <body>
 
-<div class="header">
-🚖 MyRajRide  
-<br><span style="font-size:13px">Rajasthan • Outstation • North India</span>
+<div class="hero">
+<h1>🚖 Rajasthan & North India Taxi</h1>
+<p>Safe • Fast • Trusted Travel Service</p>
+</div>
+
+<!-- SEARCH -->
+<div class="card">
+<input type="text" id="search" placeholder="Search city (Jaipur, Manali, Kashmir)">
+<button class="btn" onclick="searchCity()">Search</button>
 </div>
 
 <!-- BOOKING -->
 <div class="card">
+
+<select id="trip">
+<option value="1">One Way</option>
+<option value="2">Round Trip</option>
+</select>
 
 <select id="from">
 <option>Jaipur</option>
@@ -51,160 +104,134 @@ select{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #
 <option>Jaisalmer</option>
 <option>Ajmer</option>
 <option>Manali</option>
+<option>Kashmir</option>
 </select>
 
-<!-- CAB -->
 <select id="car">
-<option value="13">Ertiga 7 Seater (₹13/km)</option>
-<option value="14">Innova 7 Seater (₹14/km)</option>
-<option value="16">Innova Crysta (₹16/km)</option>
-<option value="16">Tempo 9 Seater (₹16/km)</option>
-<option value="18">Tempo 12 Seater (₹18/km)</option>
-<option value="20">Tempo 14 Seater (₹20/km)</option>
-<option value="22">Tempo 17 Seater (₹22/km)</option>
-<option value="24">Tempo 20 Seater (₹24/km)</option>
-<option value="25">Mini Bus (₹25/km)</option>
-<option value="30">Luxury Bus (₹30/km)</option>
+<option value="12">Sedan ₹12/km</option>
+<option value="13">Ertiga ₹13/km</option>
+<option value="14">Innova ₹14/km</option>
+<option value="20">Tempo ₹20/km</option>
+<option value="25">Mini Bus ₹25/km</option>
+<option value="30">Luxury Bus ₹30/km</option>
 </select>
 
-<button class="btn" onclick="calculate()">Check Price</button>
+<button class="btn" onclick="calc()">Check Price</button>
 
-<div id="priceBox"></div>
+<div id="price"></div>
 
 </div>
 
 <!-- ROUTES -->
 <div class="card">
-<h3>🔥 Select Route</h3>
-<div class="routes">
+<h3>🔥 Popular Tours</h3>
+<div class="grid">
 
-<div class="route" onclick="show('khatu')">Khatu Route</div>
-<div class="route" onclick="show('jaipur')">Jaipur</div>
-<div class="route" onclick="show('udaipur')">Udaipur</div>
-<div class="route" onclick="show('jodhpur')">Jodhpur</div>
-<div class="route" onclick="show('jaisalmer')">Jaisalmer</div>
-<div class="route" onclick="show('pushkar')">Ajmer-Pushkar</div>
-<div class="route" onclick="show('chittor')">Chittorgarh</div>
-<div class="route" onclick="show('ranthambore')">Ranthambore</div>
-<div class="route" onclick="show('alwar')">Alwar-Bhangarh</div>
-<div class="route" onclick="show('north')">North India</div>
+<div class="route" onclick="openCity('jaipur')">Jaipur</div>
+<div class="route" onclick="openCity('udaipur')">Udaipur</div>
+<div class="route" onclick="openCity('jaisalmer')">Jaisalmer</div>
+<div class="route" onclick="openCity('khatu')">Khatu Route</div>
+<div class="route" onclick="openCity('manali')">Manali</div>
+<div class="route" onclick="openCity('shimla')">Shimla</div>
+<div class="route" onclick="openCity('kashmir')">Kashmir</div>
+<div class="route" onclick="openCity('kedarnath')">Kedarnath</div>
+<div class="route" onclick="openCity('amritsar')">Amritsar</div>
 
 </div>
 </div>
 
-<div id="details" class="details"></div>
-
-<!-- REVIEWS -->
-<div class="card">
-<h3>⭐ Customer Reviews</h3>
-<div class="review-box">
-<div class="reviews">
-<div class="review">⭐⭐⭐⭐⭐ Khatu trip smooth – Rahul</div>
-<div class="review">⭐⭐⭐⭐⭐ Jaipur best service – Mukesh</div>
-<div class="review">⭐⭐⭐⭐⭐ Udaipur amazing – Amit</div>
-<div class="review">⭐⭐⭐⭐⭐ Jaisalmer safari top – Suresh</div>
-<div class="review">⭐⭐⭐⭐⭐ Manali trip comfortable – Sameer</div>
-</div>
-</div>
-</div>
+<div id="details"></div>
 
 <!-- STICKY -->
 <div class="sticky">
 <button class="call" onclick="call()">Call</button>
-<button class="wa" onclick="book()">WhatsApp</button>
+<button class="wa" onclick="wa()">WhatsApp</button>
 </div>
 
 <script>
 
-let selectedRoute="";
+// PRICE CALCULATOR
+function calc(){
+let km=300;
+let rate=document.getElementById("car").value;
+let trip=document.getElementById("trip").value;
+
+km=km*trip;
+let base=km*rate;
+let driver=300;
+let total=base+driver;
+
+document.getElementById("price").innerHTML=
+`Distance: ${km} km<br>
+Base Fare: ₹${base}<br>
+Driver: ₹${driver}<br>
+<b>Total: ₹${total}</b><br>
+⚠ Toll & Parking Extra`;
+}
+
+// SEARCH
+function searchCity(){
+let val=document.getElementById("search").value.toLowerCase();
+openCity(val);
+}
+
+// CITY DATA (FULL)
+function openCity(city){
+
+let data={
+
+jaipur:["Capital of Rajasthan","Amer Fort","Hawa Mahal","Govind Dev Ji Temple"],
+khatu:["Khatu Shyam Ji","Jeen Mata","Salasar Balaji"],
+udaipur:["Lake City","City Palace","Pichola Lake","Nathdwara"],
+jaisalmer:["Desert City","Sam Dunes","Tanot Mata","Longewala"],
+manali:["Himachal","Snow","Rohtang Pass","Adventure"],
+shimla:["Hill Station","Mall Road","Kufri"],
+kashmir:["Srinagar","Gulmarg","Sonmarg","Pahalgam"],
+kedarnath:["Temple","Char Dham","Mountains"],
+amritsar:["Golden Temple","Wagah Border","Jallianwala Bagh"],
+
+// UTTARAKHAND
+haridwar:["Ganga Aarti","Temple City"],
+rishikesh:["Yoga Capital","River Rafting"],
+nainital:["Lake City","Naini Lake"],
+mussoorie:["Queen of Hills"],
+
+// HIMACHAL
+dharamshala:["Dalai Lama Temple"],
+dalhousie:["Hill Station"],
+kasol:["Parvati Valley"],
+spiti:["Cold Desert"],
+
+// PUNJAB
+chandigarh:["Modern City"],
+ludhiana:["Industrial City"]
+
+};
+
+let html="<div class='card'><h3>"+city.toUpperCase()+"</h3>";
+
+if(data[city]){
+data[city].forEach(p=>{
+html+="<div class='place'>"+p+"</div>";
+});
+}else{
+html+="<div class='place'>No data found</div>";
+}
+
+html+="<button class='btn' onclick='wa()'>Book Now</button></div>";
+
+document.getElementById("details").innerHTML=html;
+
+}
 
 // CALL
 function call(){
 window.location.href="tel:7413931002";
 }
 
-// BOOK
-function book(){
-let from=document.getElementById("from").value;
-let to=document.getElementById("to").value;
-let car=document.getElementById("car").selectedOptions[0].text;
-
-let msg=`Route Booking: ${selectedRoute} | ${from} to ${to} | ${car}`;
-window.open("https://wa.me/917413931002?text="+encodeURIComponent(msg));
-}
-
-// PRICE
-function calculate(){
-
-let from=document.getElementById("from").value;
-let to=document.getElementById("to").value;
-let rate=document.getElementById("car").value;
-
-let kmData={
-"Jaipur-Khatu":220,
-"Jaipur-Udaipur":400,
-"Jaipur-Jaisalmer":550,
-"Jaipur-Ajmer":135,
-"Delhi-Jaipur":280,
-"Delhi-Manali":550
-};
-
-let key=from+"-"+to;
-let km=kmData[key]||300;
-
-let price=km*rate;
-
-document.getElementById("priceBox").innerHTML=
-`Distance: ${km} km<br>Rate: ₹${rate}/km<br>Estimated: ₹${price}`;
-}
-
-// ROUTE SYSTEM
-function show(type){
-
-selectedRoute=type;
-
-let routeMap={
-khatu:{from:"Jaipur",to:"Khatu"},
-jaipur:{from:"Jaipur",to:"Jaipur"},
-udaipur:{from:"Jaipur",to:"Udaipur"},
-jodhpur:{from:"Jaipur",to:"Jodhpur"},
-jaisalmer:{from:"Jaipur",to:"Jaisalmer"},
-pushkar:{from:"Jaipur",to:"Ajmer"},
-chittor:{from:"Jaipur",to:"Chittorgarh"},
-ranthambore:{from:"Jaipur",to:"Ranthambore"},
-alwar:{from:"Jaipur",to:"Alwar"},
-north:{from:"Delhi",to:"Manali"}
-};
-
-document.getElementById("from").value=routeMap[type].from;
-document.getElementById("to").value=routeMap[type].to;
-
-let data={
-
-khatu:["Khatu Shyam Ji","Jeen Mata","Salasar Balaji","Rani Sati","Deshnok"],
-jaipur:["City Palace","Amer Fort","Govind Dev Ji","Birla Mandir"],
-udaipur:["Lake Pichola","City Palace","Nathdwara"],
-jodhpur:["Mehrangarh Fort","Umaid Bhawan"],
-jaisalmer:["Sam Dunes","Tanot Mata","Longewala"],
-pushkar:["Ajmer Dargah","Pushkar Temple"],
-chittor:["Chittorgarh Fort","Sanwariya Seth"],
-ranthambore:["Tiger Safari"],
-alwar:["Bhangarh Fort"],
-north:["Manali","Shimla","Kedarnath"]
-
-};
-
-let html="<h3>"+type.toUpperCase()+" TOUR</h3>";
-
-data[type].forEach(p=>{
-html+="<div class='place'>"+p+"</div>";
-});
-
-html+="<button class='btn' onclick=\"book()\">Book This Route</button>";
-
-document.getElementById("details").innerHTML=html;
-document.getElementById("details").style.display="block";
-
+// WHATSAPP
+function wa(){
+window.open("https://wa.me/917413931002");
 }
 
 </script>
